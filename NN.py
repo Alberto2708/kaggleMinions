@@ -12,9 +12,7 @@ import wandb
 from wandb.integration.keras import WandbCallback
 from wandb.integration.keras import WandbMetricsLogger, WandbModelCheckpoint, WandbEvalCallback
 
-# -----------------------
-# 1. Initialize W&B
-# -----------------------
+
 wandb.init(project="csv-tf-example", config={
     "epochs": 10,
     "batch_size": 32,
@@ -23,16 +21,14 @@ wandb.init(project="csv-tf-example", config={
 })
 config = wandb.config
 
-# -----------------------
-# 2. Load CSV dataset
-# -----------------------
+
 data = pd.read_csv("Datasets/Base.csv")
 
-# Target column (adjust name!)
-target_col = "fraud_bool"
-y = data[target_col]  # adapt to your dataset (0/1 or string)
 
-# Features
+target_col = "fraud_bool"
+y = data[target_col] 
+
+
 X = data.drop(target_col, axis=1)
 
 # -----------------------
